@@ -1,0 +1,23 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      # 전역 CORS 설정 (중앙 관리 방식)
+      globalcors:
+        cors-configurations:
+          '[/**]': # 모든 경로에 대해
+            allowed-origins: "http://localhost:5173" # React 앱 주소 허용
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowed-headers: "*"
+      # 라우팅 규칙
+      routes:
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE # Eureka에 등록된 서비스 이름
+          predicates:
+            - Path=/api/products/**
