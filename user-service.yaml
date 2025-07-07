@@ -12,5 +12,5 @@ spring:
       ddl-auto: update
     show-sql: true
   jwt:
-  secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK # Base64 인코딩된 문자열
-  token-validity-in-seconds: 86400 # 토큰 유효기간 (24시간)
+    secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK # Base64 인코딩된 문자열
+    token-validity-in-seconds: 86400 # 토큰 유효기간 (24시간)
