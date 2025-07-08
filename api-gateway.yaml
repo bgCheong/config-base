@@ -4,19 +4,35 @@ server:
 spring:
   cloud:
     gateway:
-      server:
-        webflux:
-          globalcors:
-            cors-configurations:
-              '[/**]':
-                allowed-origins: "http://localhost:5173"
-                allowed-methods:
-                  - GET
-                  - POST
-                  - PUT
-                  - DELETE
-                allowed-headers: "*"
+      globalcors:
+        cors-configurations:
+          '[/**]': 
+            allowed-origins: "http://localhost:5173"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowed-headers: "*"
+            allow-credentials: true 
+
       routes:
+        - id: user-service-public
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/signup, /api/users/login
+          filters:
+            - StripPrefix=1 
+
+
+        - id: user-service-private
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/me/**
+          filters:
+            - StripPrefix=1
+            - name: AuthenticationFilter 
+
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
@@ -24,11 +40,6 @@ spring:
           filters:
             - StripPrefix=1
 
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/api/users/**
-          filters:
-            - StripPrefix=1
+# JWT 검증을 위한 비밀키 설정 (user-service와 동일해야 함)
 jwt:
   secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK
