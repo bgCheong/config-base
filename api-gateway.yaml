@@ -43,3 +43,7 @@ spring:
 # JWT 검증을 위한 비밀키 설정 (user-service와 동일해야 함)
 jwt:
   secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK
+
+logging:
+  level:
+    org.springframework.security: DEBUG
