@@ -41,6 +41,14 @@ spring:
             - StripPrefix=1
             - name: AuthenticationFilter 
 
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/orders/**
+          filters:
+            - StripPrefix=1
+            - name: AuthenticationFilter 
+
 # JWT 검증을 위한 비밀키 설정 (user-service와 동일해야 함)
 jwt:
   secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK
