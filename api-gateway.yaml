@@ -28,7 +28,7 @@ spring:
         - id: user-service-private
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/users/me/**
+            - Path=/api/users/me/** , /api/users/logout
           filters:
             - StripPrefix=1
             - name: AuthenticationFilter 
