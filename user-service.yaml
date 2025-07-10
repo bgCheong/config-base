@@ -11,10 +11,15 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
 jwt:
   secret: V293aG9hbnNbamVvbmduYWUgY2hhbmdlIHNpbXNpbWhhZGEK # Base64 인코딩된 문자열
   token-validity-in-seconds: 86400 # 토큰 유효기간 (24시간)
-
+  
 logging:
   level:
     org.springframework.security: DEBUG
