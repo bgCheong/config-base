@@ -20,7 +20,7 @@ spring:
         - id: user-service-public
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/users/signup, /api/users/login , /api/users/refresh
+            - Path=/api/users/signup, /api/users/login , /api/users/refresh , /api/users/duplicate
           filters:
             - StripPrefix=1 
 
