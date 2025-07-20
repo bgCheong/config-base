@@ -48,6 +48,14 @@ spring:
           filters:
             - StripPrefix=1
             - name: AuthenticationFilter 
+            
+        - id: cart-service
+          uri: lb://CART-SERVICE
+          predicates:
+            - Path=/api/carts/**
+          filters:
+            - StripPrefix=1
+            - name: AuthenticationFilter
 
 # JWT 검증을 위한 비밀키 설정 (user-service와 동일해야 함)
 jwt:
