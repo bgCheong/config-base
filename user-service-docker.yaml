@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql:5432/ecoms_user
-    username: erp
-    password: wein123!
+    url: jdbc:postgresql://postgresql:5432/user_service
+    username: user_service_user
+    password: test123!
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

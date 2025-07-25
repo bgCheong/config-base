@@ -3,15 +3,15 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql:5432/service_order
-    username: erp
-    password: wein123!
+    url: jdbc:postgresql://postgresql:5432/order_service
+    username: order_service_user
+    password: test123!
   jpa:
     hibernate:
       ddl-auto: update
 
   kafka:
     producer:
-      bootstrap-servers: kafka:9094
+      bootstrap-servers: kafka:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
