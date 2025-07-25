@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-server:5432/ecoms_user
+    url: jdbc:postgresql://postgresql:5432/ecoms_user
     username: erp
     password: wein123!
     driver-class-name: org.postgresql.Driver
@@ -13,7 +13,7 @@ spring:
     show-sql: true
   data:
     redis:
-      host: redis-container
+      host: redis
       port: 6379
 
 jwt:

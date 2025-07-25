@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-server:5432/ecoms_product
+    url: jdbc:postgresql://postgresql:5432/ecoms_product
     username: erp
     password: wein123!
     driver-class-name: org.postgresql.Driver
