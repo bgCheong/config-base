@@ -26,3 +26,14 @@ jwt:
 logging:
   level:
     org.springframework.security: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
