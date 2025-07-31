@@ -4,58 +4,60 @@ server:
 spring:
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]': 
-            allowed-origins: "http://localhost:5173"
-            allowed-methods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-            allowed-headers: "*"
-            allow-credentials: true 
+      server:
+        webflux:
+          globalcors:
+            cors-configurations:
+              '[/**]': 
+                allowed-origins: "http://localhost:5173"
+                allowed-methods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                allowed-headers: "*"
+                allow-credentials: true 
 
-      routes:
-        - id: user-service-public
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/api/users/signup, /api/users/login , /api/users/refresh , /api/users/duplicate
-          filters:
-            - StripPrefix=1 
+          routes:
+            - id: user-service-public
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/users/{segment:(?:signup|login|refresh|duplicate)}
+              filters:
+                - StripPrefix=1 
 
 
-        - id: user-service-private
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/api/users/me , /api/users/logout , /api/users/delete
-          filters:
-            - StripPrefix=1
-            - name: AuthenticationFilter 
+            - id: user-service-private
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/users/{segment:(?:me|logout|delete)}
+              filters:
+                - StripPrefix=1
+                - name: AuthenticationFilter 
 
-        - id: product-service
-          uri: lb://PRODUCT-SERVICE
-          predicates:
-            - Path=/api/products/**
-          filters:
-            - StripPrefix=1
-            - name: AuthenticationFilter 
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/api/products/**
+              filters:
+                - StripPrefix=1
+                - name: AuthenticationFilter 
 
-        - id: order-service
-          uri: lb://ORDER-SERVICE
-          predicates:
-            - Path=/api/orders/**
-          filters:
-            - StripPrefix=1
-            - name: AuthenticationFilter 
-            
-        - id: cart-service
-          uri: lb://CART-SERVICE
-          predicates:
-            - Path=/api/carts/**
-          filters:
-            - StripPrefix=1
-            - name: AuthenticationFilter
+            - id: order-service
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/api/orders/**
+              filters:
+                - StripPrefix=1
+                - name: AuthenticationFilter 
+                
+            - id: cart-service
+              uri: lb://CART-SERVICE
+              predicates:
+                - Path=/api/carts/**
+              filters:
+                - StripPrefix=1
+                - name: AuthenticationFilter
 
 # JWT 검증을 위한 비밀키 설정 (user-service와 동일해야 함)
 jwt:
