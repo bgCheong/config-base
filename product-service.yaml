@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecoms_product
+    username: erp
+    password: wein123!
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:postgresql://postgresql:5432/product_service
+    username: product_service_user
+    password: test123!
+    driver-class-name: org.postgresql.Driver
