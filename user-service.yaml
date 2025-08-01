@@ -33,8 +33,12 @@ spring:
     activate:
       on-profile: docker
   datasource:
-    url: jdbc:postgresql://postgresql:5432/ecoms_user
+    url: jdbc:postgresql://postgresql:5432/user_service
+    username: user_service_user
+    password: test123!
+    driver-class-name: org.postgresql.Driver
   data:
     redis:
       host: redis
+      port: 6379
 
